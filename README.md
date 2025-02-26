@@ -1,6 +1,8 @@
 # Microservices-Infra
 
 The infrastructure for the Dev-Ops Stage 4 microservices application
+
+```
 infrastructure/
 ├── README.md
 ├── terraform
@@ -16,3 +18,4 @@ infrastructure/
 │ │ │ └── main.yml
 │ └── site.yml
 └── deploy.sh
+```
