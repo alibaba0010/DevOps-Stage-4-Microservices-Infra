@@ -1,0 +1,17 @@
+---
+- name: Update apt or yum (depending on your OS)
+  # For Amazon Linux 2 or RedHat-based:
+  yum:
+    name: docker
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Install Docker Compose from pip
+  pip:
+    name: docker-compose

@@ -1,0 +1,26 @@
+---
+- hosts: app_server
+  become: yes
+  roles:
+    - docker_install
+
+- hosts: app_server
+  become: yes
+  tasks:
+    - name: Clone your forked application repo
+      git:
+        repo: "https://github.com/YourUser/forked-todo-app.git"
+        dest: /home/ec2-user/forked-todo-app
+        version: main
+
+    - name: Change directory ownership
+      file:
+        path: /home/ec2-user/forked-todo-app
+        owner: ec2-user
+        group: ec2-user
+        recurse: yes
+
+    - name: Run docker-compose up
+      shell: |
+        cd /home/ec2-user/forked-todo-app
+        docker-compose up -d
