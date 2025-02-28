@@ -2,7 +2,7 @@ resource "aws_instance" "app_server" {
   ami                    =  var.ami_id
   instance_type          = var.instance_type
   key_name               = var.key_name
-  security_groups = [aws_security_group.todo_sg.name]
+  security_groups = [aws_security_group.app_sg.name]
   associate_public_ip_address = true
 
   tags = {
