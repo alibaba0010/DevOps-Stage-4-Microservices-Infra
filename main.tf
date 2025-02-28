@@ -17,9 +17,12 @@ provisioner "local-exec" {
   # Inbound rules: allow SSH, HTTP, HTTPS
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 }
-
+data "aws_vpc" "default" {
+  default = true
+} 
 resource "aws_security_group" "app_sg" {
-  name        = "app_sg"
+  name = var.security_group_name
+  vpc_id = data.aws_vpc.default.id 
   description = "Security group for the Docker/Ansible server"
 
   ingress {

@@ -28,3 +28,7 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type        = string
   description = "AWS secret access key"
 }
+variable "security_group_name" {
+  description = "The name of the security group"
+  type        = string
+}
