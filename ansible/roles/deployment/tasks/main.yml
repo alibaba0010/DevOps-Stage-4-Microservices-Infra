@@ -20,9 +20,9 @@
 #     curl "https://www.duckdns.org/update?domains=todoapphng.duckdns.org&token=8109b11a-af70-44dc-b256-cee0b260579a&ip={{ ansible_host }}"
 
 # - name: Create docker network
-#   become: true
-#   shell: |
-#     docker network create app-network
+  become: true
+  shell: |
+    docker network create app-network
 
 - name: Run Docker Compose
   become: true
