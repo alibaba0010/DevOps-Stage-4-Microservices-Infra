@@ -22,7 +22,7 @@
 
 - name: Check if docker network exists
   become: true
-  command: docker network ls --filter name=app-network --format "{{.Name}}"
+  command: docker network ls --filter name=app-network --format "{{'{{.Name}}'}}"
   register: network_check
   changed_when: false
 
