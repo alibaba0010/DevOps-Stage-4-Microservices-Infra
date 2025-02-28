@@ -8,12 +8,12 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = "TODO-MCS-Application"
   }
-# provisioner "local-exec" {
-#   command = <<EOT
-#     echo "[servers]" > ansible/inventory.ini
-#      echo "app_server ansible_host=${self.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${var.ssh_key_path} ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ansible/inventory
-#   EOT
-# }
+provisioner "local-exec" {
+  command = <<EOT
+    echo "[servers]" > ansible/inventory.ini
+     echo "app_server ansible_host=${self.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${var.ssh_key_path} ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ansible/inventory
+  EOT
+}
   # Inbound rules: allow SSH, HTTP, HTTPS
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 }
