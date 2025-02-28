@@ -20,10 +20,16 @@
 #   shell: |
 #     curl "https://www.duckdns.org/update?domains=todoapphng.duckdns.org&token=8109b11a-af70-44dc-b256-cee0b260579a&ip={{ ansible_host }}"
 
-- name: Create docker network
+- name: Check if docker network exists
   become: true
-  shell: |
-    docker network create app-network
+  command: docker network ls --filter name=app-network --format "{{.Name}}"
+  register: network_check
+  changed_when: false
+
+- name: Create docker network if not exists
+  become: true
+  command: docker network create app-network
+  when: network_check.stdout == ""
 
 - name: Run Docker Compose
   become: true
