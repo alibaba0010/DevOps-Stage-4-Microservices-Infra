@@ -16,10 +16,10 @@ variable "ami_id" {
   type        = string
   description = "Name of the AWS key pair"
 }
-# variable "ssh_key_path" {
-#   type        = string
-#   description = "AWS ssh key path"
-# }
+variable "ssh_key_path" {
+  type        = string
+  description = "AWS ssh key path"
+}
 variable "AWS_ACCESS_KEY_ID" {
   type        = string
   description = "AWS access key id"  
