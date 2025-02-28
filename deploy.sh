@@ -16,4 +16,4 @@ sed -i "s/<PUBLIC_IP_OR_DNS>/$PUBLIC_IP/" ansible/inventory.ini
 
 # 4. Run Ansible
 cd ansible
-ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory site.yml
