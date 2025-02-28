@@ -14,7 +14,8 @@
     state: touch
     mode: "0600"
 
-# - name: setup ssl cert
+# Uncomment and adjust this task if needed
+# - name: Setup SSL cert
 #   become: true
 #   shell: |
 #     curl "https://www.duckdns.org/update?domains=todoapphng.duckdns.org&token=8109b11a-af70-44dc-b256-cee0b260579a&ip={{ ansible_host }}"
