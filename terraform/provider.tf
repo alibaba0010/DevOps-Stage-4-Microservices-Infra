@@ -1,16 +1,15 @@
 terraform {
-  required_version = ">= 1.2.0"
+  required_version = ">= 1.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.16"
+      version = "~> 4.0"
     }
   }
-  
 }
 
 provider "aws" {
-  region  = var.aws_region //us-east-1 
+  region  = var.aws_region
   # You can also set AWS credentials via environment variables:
   # export AWS_ACCESS_KEY_ID=...
   # export AWS_SECRET_ACCESS_KEY=...

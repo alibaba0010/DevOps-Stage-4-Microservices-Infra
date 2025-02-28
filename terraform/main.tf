@@ -1,19 +1,13 @@
 resource "aws_instance" "app_server" {
-  ami                    = var.ami_id
+  ami                    = "ami-0c55b159cbfafe1f0"  # Example Amazon Linux 2 AMI
   instance_type          = var.instance_type
   key_name               = var.key_name
-  security_groups = [aws_security_group.todo_sg.name]
   associate_public_ip_address = true
 
   tags = {
-    Name = "TODO-MCS-Application"
+    Name = "Docker-Ansible-Server"
   }
-provisioner "local-exec" {
-  command = <<EOT
-    echo "[servers]" > ansible/inventory.ini
-     echo "app_server ansible_host=${self.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${var.ssh_key_path} ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ansible/inventory
-  EOT
-}
+
   # Inbound rules: allow SSH, HTTP, HTTPS
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 }
