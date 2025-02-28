@@ -1,0 +1,31 @@
+---
+- name: Clone the repository
+  become: true
+  git:
+    repo: "https://github.com/Jidetireni/DevOps-Stage-4.git"
+    dest: /home/ubuntu/todo-app
+    version: main
+    force: yes
+
+- name: Set correct permissions for acme.json
+  become: true
+  file:
+    path: /home/ubuntu/todo-app/letsencrypt/acme.json
+    state: touch
+    mode: '0600'
+
+- name: setup ssl cert
+  become: true
+  shell: |
+    curl "https://www.duckdns.org/update?domains=todoapphng.duckdns.org&token=8109b11a-af70-44dc-b256-cee0b260579a&ip={{ ansible_host }}"
+    
+- name: Create docker network
+  become: true
+  shell: |
+    docker network create app-network
+
+- name: Run Docker Compose
+  become: true
+  command:
+    cmd: docker compose up -d
+    chdir: /home/ubuntu/todo-app
