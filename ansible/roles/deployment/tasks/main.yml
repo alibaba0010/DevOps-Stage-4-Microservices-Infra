@@ -28,5 +28,5 @@
 - name: Run Docker Compose
   become: true
   command:
-    cmd: docker compose up -d
+    cmd: docker compose up -d --build
     chdir: /home/ubuntu/todo-app
