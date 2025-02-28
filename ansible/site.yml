@@ -1,6 +1,6 @@
 ---
 - name: Setup and deploy TODO app
-  hosts: servers
+  hosts: app_server
   become: yes
   roles:
     - dependencies
